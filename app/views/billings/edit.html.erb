@@ -1,0 +1,13 @@
+<%= content_for :header do -%>
+  <h2>Billing Information</h2>
+<% end -%>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<%= semantic_form_for @account, :url => account_billing_path(@account) do |form| %>
+  <%= render :partial => 'billings/form', :locals => { :form => form } %>
+
+  <%= form.buttons do %>
+    <%= form.commit_button "Update" %>
+  <% end %>
+<% end %>

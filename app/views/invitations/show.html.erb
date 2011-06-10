@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+  <h2>Accept invitation to <%= @invitation.account_name %></h2>
+<% end -%>
+
+<%= semantic_form_for @invitation do |form| %>
+  <h5 class="legend">I am a new user</h5>
+  <%= form.inputs :class => 'new_user' do -%>
+    <%= form.input :new_user_email, :label => 'Email' %>
+    <%= form.input :new_user_name, :label => 'Name' %>
+    <%= form.input :new_user_password, :label => 'Password' %>
+  <% end -%>
+
+  <h5 class="legend">I am an existing user</h5>
+  <%= form.inputs :class => 'existing_user' do -%>
+    <%= form.input :authenticating_user_email, :label => 'Email' %>
+    <%= form.input :authenticating_user_password, :label => 'Password' %>
+  <% end -%>
+
+  <%= form.buttons do %>
+    <%= form.commit_button "Accept Invitation" %>
+  <% end %>
+<% end %>

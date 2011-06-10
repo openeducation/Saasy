@@ -1,0 +1,12 @@
+<ol>
+  <% @plans.each do |plan| %>
+    <%= content_tag_for :li, plan, :class => plan.name.parameterize do %>
+      <%= link_to new_plan_account_path(plan) do -%>
+        <%= render(plan) %>
+      <% end -%>
+    <% end %>
+  <% end %>
+</ol>
+
+<%= render 'plans/terms' %>
+

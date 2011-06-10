@@ -1,0 +1,33 @@
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(function() {
+      $('#project_name_input p.inline-hints').each(function(index) {
+        $(this).html($(this).text().replace("keyword", "<span>keyword</span>"))
+      });
+      $('#project_name').keyup(function(){
+        var mainPart = /^([\w\s]*)(\W*)/.exec($(this).val())[1];
+        mainPart = mainPart.replace(/ /g, "").toLowerCase();
+        if(mainPart == "") mainPart = "keyword";
+        $(this).siblings('p.inline-hints').find('span').text(mainPart);
+        $('#project_keyword').val(mainPart);
+      });
+
+      $.fn.updateSelectedPlan = function() {
+        $(".plans-edit input:radio:not(checked)").each(function() {
+          $("label[for=" + $(this).attr("id") + "]").removeClass('selected');
+        });
+        $("label[for=" + $(this).attr("id") + "]").addClass('selected');
+        if($(this).attr("data-free") == "true") {
+          $(".billing_information").hide();
+        } else {
+          $(".billing_information").show();
+        }
+      };
+
+      $(".plans-edit input:radio").click(function() {
+        $(this).updateSelectedPlan();
+      });
+      $(".plans-edit input:radio:checked").updateSelectedPlan();
+    });
+  <% end %>
+<% end -%>

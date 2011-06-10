@@ -1,0 +1,36 @@
+<% content_for :header do -%>
+  <h2>Sign up</h2>
+<% end -%>
+
+<%= semantic_form_for @signup, :url => plan_accounts_path(@plan) do |form| %>
+  <div class="plan chosen">
+    <h3>You're signing up for:</h3>
+    <%= render @plan %>
+    <%= link_to "Change this plan", plans_path %>
+  </div>
+
+  <% unless signed_in? -%>
+    <h5 class="legend">User Information</h5>
+    <%= form.inputs do %>
+      <%= form.input :email, :required => true  %>
+      <%= form.input :password, :required => true  %>
+    <% end -%>
+  <% else -%>
+    <p id="existing-user-text">Your existing user, <strong><%= current_user.name %></strong>, will be added as the first administrator on this new account.</p>
+  <% end -%>
+
+  <% if @plan.billed? -%>
+    <h5 class="legend">Billing Information</h5>
+    <%= render :partial => 'billings/form', :locals => { :form => form } %>
+  <% end -%>
+
+  <p id="terms-text">By clicking <strong>Sign up</strong> you agree to our <%= link_to "Terms of Service", "/pages/terms" %>.</p>
+
+  <%= form.buttons do %>
+    <%= form.commit_button "Sign up" %>
+  <% end %>
+<% end %>
+
+<%= render "plans/terms" %>
+
+<%= render :partial => "shared/saucy_javascript" %>

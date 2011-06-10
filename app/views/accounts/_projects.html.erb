@@ -1,0 +1,12 @@
+<% if projects.empty? -%>
+  <%= render 'accounts/blank_slate', :account => account %>
+<% else -%>
+  <ul class="projects">
+    <% projects.each do |project| -%>
+      <%= content_tag_for :li, project do -%>
+        <%= link_to h(project.name), project_path(project) %>
+      <% end -%>
+    <% end -%>
+  </ul>
+<% end -%>
+

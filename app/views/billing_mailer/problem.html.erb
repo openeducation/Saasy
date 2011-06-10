@@ -1,0 +1,13 @@
+<p>Unfortunately there was a problem processing your latest payment for your <%= @account.name -%> account on <%= t("app_name") %>.</p>
+
+<p>Some functionality of your <%= @account.name -%> account on <%= t("app_name") %> is now disabled.</p>
+
+<p>Please verify and fix the credit card details <%= link_to "here", account_billing_url(@account) %> to restore full access to the account.</p>
+
+<p>If you have any questions, please contact us anytime at <%= mail_to t("support_email"), t("support_email") %>.</p>
+
+<hr/>
+
+<p>Thanks for your business,<br/>
+The <%= t("app_name") %> Team<br/>
+<%= t("app_url") %></p>

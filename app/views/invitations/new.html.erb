@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+  <h2>Invite a new User</h2>
+<% end -%>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<%= semantic_form_for [current_account, @invitation] do |form| -%>
+  <%= form.inputs do -%>
+    <%= form.input :email %>
+    <%= form.input :admin, :label => "Grant administrator privileges" %>
+    <%= form.input :projects, :as => :check_boxes, :collection => @projects %>
+  <% end -%>
+
+  <%= form.buttons do -%>
+    <%= form.commit_button "Invite User" %>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,8 @@
+<%= form.inputs do %>
+  <%= form.input :cardholder_name, :required => true %>
+  <%= form.input :billing_email, :required => true, :hint => "We'll send receipts and billing issues to this address." %>
+  <%= form.input :card_number, :required => true, :input_html => { :autocomplete => "off" } %>
+  <%= form.input :verification_code, :required => true, :input_html => { :autocomplete => "off" } %>
+  <%= form.input :expiration_month, :collection => [['January', '01'], ['February', '02'], ['March', '03'], ['April', '04'], ['May', '05'], ['June', '06'], ['July', '07'], ['August', '08'], ['September', '09'], ['October', '10'], ['November', '11'], ['December', '12']], :required => true %>
+  <%= form.input :expiration_year, :collection => (Date.today.year..(Date.today.year+10)).to_a, :required => true %>
+<% end -%>

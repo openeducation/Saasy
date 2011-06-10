@@ -1,0 +1,55 @@
+<% if current_user.projects.active.any? -%>
+  <ul id="project-selection">
+    <li>
+      <h1>
+        <%= link_to current_project? ? project_path(current_project) : root_url do -%>
+          <% if current_project? -%>
+            <span><%= current_project.name %></span>
+          <% else %>
+            <span>Projects</span>
+          <% end -%>
+          <% if current_user.memberships.admin.any? || current_user.projects.active.any? -%>
+            <img src="/images/arrow-down.png" alt="arrow down" />
+          <% end -%>
+        <% end %>
+      </h1>
+      <ul>
+        <% current_user.projects.active.each do |project| %>
+          <li><%= link_to project.name, project_path(project) -%></li>
+        <% end %>
+        <% if current_user.memberships.admin.any? -%>
+          <li>
+            <%= link_to current_account? && current_user.admin_of?(current_account) ? new_project_path(current_account) : new_project_path(current_user.memberships.admin.first.account) do %>
+              &#43; Create a new project
+            <% end %>
+          </li>
+        <% end -%>
+      </ul>
+    </li>
+  </ul>
+<% end -%>
+
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(function() {
+      $('#project-selection h1 a').click(function() {
+        var dropdownbutton = $('#project-selection h1 a');
+        var dropdownlist = $('#project-selection li ul');
+        if(dropdownbutton.hasClass("expanded")) {
+          dropdownbutton.removeClass("expanded");
+          dropdownlist.removeClass("expanded");
+        } else {
+          dropdownbutton.addClass("expanded");
+          dropdownlist.addClass("expanded");
+        }
+        return false;
+      });
+
+      $('html *').live('click', function() {
+        if($(this).parents('.expanded').length == 0) {
+          $('.expanded').removeClass('expanded');
+        }
+      });
+    });
+  <% end %>
+<% end -%>

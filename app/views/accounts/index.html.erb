@@ -1,0 +1,9 @@
+<% content_for :header do -%>
+  <h2>Accounts</h2>
+<% end -%>
+
+<% @accounts.each do |account| -%>
+  <%= render 'account', :account  => account,
+                        :projects => account.projects_visible_to(current_user) %>
+<% end -%>
+

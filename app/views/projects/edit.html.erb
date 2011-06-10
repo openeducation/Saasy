@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+  <h2>Edit project: <%= @project.name %></h2>
+<% end -%>
+
+<div class="actions">
+  <%= link_to project_path(@project), :method  => 'delete', :confirm => 'Are you sure you want to delete this project and all associated content?', :class => 'action' do %>
+    <span class="delete_item">Remove this project</span>
+  <% end -%>
+</div>
+
+
+<%= render :partial => 'accounts/subnav' %>
+
+<%= semantic_form_for @project, :url => account_project_url(current_account, @project) do |form| %>
+  <%= render 'form', :form => form %>
+
+  <%= form.buttons do %>
+    <%= form.commit_button %>
+    <%= link_to 'Cancel', account_projects_path(current_account) %>
+  <% end %>
+<% end -%>
+

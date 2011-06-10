@@ -1,0 +1,13 @@
+<% content_for :header do -%>
+  <h2>Create a new project</h2>
+<% end -%>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<%= semantic_form_for(@project, :url => account_projects_url(current_account)) do |form| %>
+  <%= render 'form', :form => form %>
+  <%= form.buttons do -%>
+    <%= form.commit_button %>
+    <li><%= link_to 'Cancel', account_projects_path(current_account) %></li>
+  <% end -%>
+<% end -%>

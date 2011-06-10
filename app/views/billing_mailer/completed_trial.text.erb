@@ -1,0 +1,13 @@
+<%= t(".greeting") %>
+
+<%= t(".notice", :account_name => @account.name, :app_name => t("app_name")) %>
+
+<%= edit_account_plan_url(@account) %>
+
+<%= t(".contact", :app_name => t("app_name")) %>
+
+============================================================
+
+Thanks for your business,
+The <%= t("app_name") %> Team
+<%= t("app_url") %>

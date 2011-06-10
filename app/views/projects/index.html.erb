@@ -1,0 +1,28 @@
+<% content_for :header do -%>
+  <h2>Projects for <%= current_account.name %></h2>
+<% end -%>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<h3>Active Projects</h3>
+<ul class="projects active">
+  <% @active_projects.each do |project| -%>
+    <%= content_tag_for :li, project do -%>
+      <%= link_to h(project.name), edit_project_path(project), :class => "edit" %>
+    <% end -%>
+  <% end -%>
+</ul>
+
+<%= link_to 'New Project', new_account_project_path(current_account), :class => "button" %>
+
+<% if @archived_projects.any? -%>
+  <h3>Archived Projects</h3>
+  <ul class="projects archived">
+    <% @archived_projects.each do |project| -%>
+      <%= content_tag_for :li, project do -%>
+        <%= link_to h(project.name), edit_project_path(project), :class => "edit" %>
+        <%= link_to "View Project", project_path(project), :class => "view" %>
+      <% end -%>
+    <% end -%>
+  </ul>
+<% end -%>

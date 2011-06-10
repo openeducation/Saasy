@@ -1,0 +1,32 @@
+<p class="name"><%= plan.name %></p>
+<p class="price">
+  <% if plan.billed? %>
+    $<%= plan.price %>/month
+  <% else %>
+    Free
+  <% end %>
+  <% if plan.trial? %>
+    Trial
+  <% end -%>
+</p>
+<ul class="features">
+  <% if plan.trial? -%>
+    <li class="trial"><%= t(".trial_will_expire",
+                            :default => "Your trial will expire after 30 days.") %></li>
+  <% else -%>
+    <% plan.limits.numbered.each do |limit| %>
+      <%= content_tag_for :li, limit, :class => limit.name do %>
+        <%= pluralize(limit.value, limit.name.singularize) %>
+      <% end %>
+    <% end %>
+    <% plan.limits.boolean.each do |limit| %>
+      <%= content_tag_for :li, limit, :class => limit.name do %>
+        <% if limit.allowed? -%>
+          <%= limit.name %>
+        <% else %>
+          &nbsp;
+        <% end -%>
+      <% end -%>
+    <% end %>
+  <% end -%>
+</ul>

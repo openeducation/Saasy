@@ -1,0 +1,9 @@
+<%= content_tag_for :div, account do -%>
+  <div class="account-header">
+    <h3><%= account.name %></h3>
+  </div>
+
+  <%= render 'accounts/projects',
+             :projects => projects,
+             :account  => account %>
+<% end -%>

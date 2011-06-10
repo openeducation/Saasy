@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body class="saucy">
+    <% flash.each do |key, value| -%>
+      <%= value %>
+    <% end -%>
+
+    <% if signed_in? -%>
+      <%= render :partial => 'shared/project_dropdown' %>
+    <% else %>
+      <%= link_to root_url do %>
+        <h1><%= t("app_name") %></h1>
+      <% end %>
+    <% end %>
+
+    <% if signed_in? -%>
+      <%= link_to 'Sign out', sign_out_path, :method => :delete %>
+    <% else -%>
+      <%= link_to 'Sign in', sign_in_path %>
+    <% end -%>
+
+    <%= yield :subnav %>
+    <%= yield :header %>
+
+    <%= yield %>
+
+    <%= javascript_include_tag 'jquery' %>
+    <%= yield :javascript %>
+  </body>
+</html>

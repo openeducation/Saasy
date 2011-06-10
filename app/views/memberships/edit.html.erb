@@ -1,0 +1,21 @@
+<% content_for :header do -%>
+  <h2>Permissions for <span><%= @membership.name %></span> on <%= current_account.name %></h2>
+<% end -%>
+
+<div class="actions">
+  <%= link_to @membership, :method  => :delete, :confirm => "Are you sure?" do %>
+    <span class="delete_item">Remove <%= @membership.user.name %> from <%= current_account.name %></span>
+  <% end -%>
+</div>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<%= semantic_form_for @membership do |form| -%>
+  <%= form.inputs do -%>
+    <%= form.input :admin, :label => "#{@membership.user.name} is an Admin on #{current_account.name}" %>
+    <%= form.input :projects, :as => :check_boxes, :collection => @projects, :label => "#{@membership.user.name} belongs to these projects:" %>
+  <% end -%>
+  <%= form.buttons do -%>
+    <%= form.commit_button "Update" %>          
+  <% end -%>
+<% end -%>

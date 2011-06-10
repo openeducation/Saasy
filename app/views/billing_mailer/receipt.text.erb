@@ -1,0 +1,25 @@
+Thanks for your business!
+
+The latest payment for your <%= @account.name -%> account on <%= t("app_name") %> has been approved.  This is only a receipt, no payment is due. If you have any questions, please contact us anytime at <%= t("support_email") %>.
+
+============================================================
+RECEIPT                                             <%= @transaction.created_at.to_s(:short_date) -%>
+
+
+Plan: <%= @account.plan.name -%>
+Charge: USD <%= number_to_currency @account.plan.price -%>*
+Credit card: XXXX-XXXX-XXXX-<%= @account.credit_card.last_4 %>
+
+<%= t("saucy.billing_address") %>
+
+Bill to:
+<%= @account.name %>
+<%= @account.credit_card.cardholder_name %>
+
+* EU customers: prices exclude VAT
+
+============================================================
+
+Thanks for your business,
+The <%= t("app_name") %> Team
+<%= t("app_url") %>

@@ -1,0 +1,29 @@
+<% if current_user.admin_of?(current_account) -%>
+  <% content_for :header do -%>
+    <h2>Billing Information</h2>
+  <% end -%>
+
+  <%= render :partial => 'accounts/subnav' %>
+
+  <div class="current_credit_card">
+    <p>We're currently charging the credit card ending in <%= current_account.credit_card.last_4 %>. <%= link_to "Change", edit_account_billing_path(current_account) %></p>
+  </div>
+  <div class="billing_history">
+    <h3>Your Invoices</h3>
+    <% if current_account.subscription.transactions.any? -%>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+        </tr>
+        <% current_account.subscription.transactions.each do |transaction| -%>
+          <tr>
+            <td><%= transaction.created_at.to_s(:short_date) %></td> <td><%= number_to_currency transaction.amount %></td>
+          </tr>
+        <% end -%>
+      </table>
+    <% else -%>
+      <p>There have been no invoices yet.</p>
+    <% end -%>
+  </div>
+<% end -%>

@@ -1,0 +1,33 @@
+<%= content_for :header do -%>
+  <h2>Upgrade Your Plan</h2>
+<% end -%>
+
+<%= semantic_form_for @account, :url => account_plan_path(@account) do |form| %>
+  <%= form.inputs :class => "radio optional" do %>
+    <% @plans.each do |plan| -%>
+      <%= content_tag_for :li, plan, :class => "#{plan.name.parameterize} #{'disabled' if !@account.can_change_plan_to?(plan)}" do %>
+        <div>
+          <%= render(plan) %>
+        </div>
+        <%= form.label :plan_id, "Choose plan", :value => plan.id %>
+        <%= form.radio_button :plan_id, plan.id, :disabled => !@account.can_change_plan_to?(plan), "data-free" => plan.free? %>
+        <% if !@account.can_change_plan_to?(plan) -%>
+          <p class="disabled"><%= t(".plan-disabled", :default => "Too big for %{name}.", :name => plan.name) %></p>
+        <% end -%>
+      <% end %>
+    <% end -%>
+  <% end %>
+
+  <% if !@account.credit_card -%>
+    <div class="billing_information" style="<%= 'display: none' if @account.plan.free? %>">
+      <h5 class="legend">Billing Information</h5>
+      <%= render :partial => 'billings/form', :locals => { :form => form } %>
+    </div>
+  <% end -%>
+
+  <%= form.buttons do %>
+    <%= form.commit_button "Upgrade" %>
+  <% end %>
+<% end %>
+
+<%= render :partial => "shared/saucy_javascript" %>

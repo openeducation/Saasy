@@ -1,0 +1,13 @@
+<%= content_tag_for :div, limit, :class => "#{limit.name} meter" do %>
+  <span class="numbers">
+    <em><%= limit.current_count(current_account) %></em><span>/<%= limit.value %></span>
+  </span>
+  <span class="label">
+    <%= limit.name %>
+  </span>
+  <div class="bar">
+    <span style="width: <%= current_percentage(limit, current_account) %>;">
+      <%= current_percentage(limit, current_account) %>
+    </span>
+  </div>
+<% end %>

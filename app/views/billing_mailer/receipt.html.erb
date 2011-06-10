@@ -1,0 +1,41 @@
+<p><strong>Thanks for your business!</strong></p>
+
+<p>The latest payment for your <strong><%= @account.name -%> account on <%= t("app_name") %></strong> has been approved.  This is only a receipt, no payment is due. If you have any questions, please contact us anytime at <%= mail_to t("support_email"), t("support_email") %></p>
+
+<hr/>
+
+<table>
+  <tr>
+    <td>
+      RECEIPT
+    </td>
+    <td>
+      <%= @transaction.created_at.to_s(:short_date) -%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Plan: <%= @account.plan.name -%></br>
+      Charge: USD <%= number_to_currency @account.plan.price -%>*<br/>
+      Credit card: XXXX-XXXX-XXXX-<%= @account.credit_card.last_4 %>
+
+      <p><small>* EU customers: prices exclude VAT</small></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= t("saucy.billing_address") %>
+    </td>
+    <td>
+      <strong>Bill to:</strong><br/>
+      <%= @account.name %><br/>
+      <%= @account.credit_card.cardholder_name %>
+    </td>
+  </tr>
+</table>
+
+<hr/>
+
+<p>Thanks for your business,<br/>
+The <%= t("app_name") %> Team<br/>
+<%= link_to t("app_url"), t("app_url") %></p>

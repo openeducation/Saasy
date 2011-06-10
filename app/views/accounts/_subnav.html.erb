@@ -1,0 +1,10 @@
+<% content_for :subnav do -%>
+  <ul class="subnav">
+    <li class="accounts"><%= link_to "Account Info", edit_account_url(current_account) %></li>
+    <li class="projects"><%= link_to "Projects", account_projects_url(current_account) %></li>
+    <li class="users"><%= link_to "Users", account_memberships_url(current_account) %></li>
+    <% if current_account.plan.billed? %>
+      <li class="billing"><%= link_to "Billing", account_billing_path(current_account) %></li>
+    <% end -%>
+  </ul>
+<% end -%>

@@ -1,0 +1,37 @@
+en:
+  app_name: App Name
+  app_url: 'http://example.com'
+  support_email: support@example.com
+  saucy:
+    billing_address: Billing Address
+    errors:
+      past_due:
+        admin: There was an issue processing the credit card you have on file. Please update your credit card information.
+        user: There was an issue processing the credit card on file for this account. Please have an administrator on the account update the credit card information.
+      expired:
+        admin: Your account's trial has expired. Please upgrade to another plan.
+        user: This account's trial has expired. Please have an administrator on the account upgrade to another plan.
+  billing_mailer:
+    expiring_trial:
+      greeting: Thanks for giving us a try!
+      expiration_notice: "Your 30 day trial for %{account_name} is expiring soon. I hope that you've enjoyed %{app_name} enough to sign up for a paid subscription.  If you'd like to continue using your account, please take a moment to choose a paid plan:"
+      contact: "If you need more time to evaluate %{app_name} or you have any questions, please don't hesitate to contact me."
+    completed_trial:
+      greeting: Thanks for giving us a try!
+      notice: "Your 30 day trial for %{account_name} is over, and your account has become inactive. If you'd like to continue using your account, please take a moment to choose a paid plan:"
+      contact: "If you need more time to evaluate %{app_name} or you have any questions, please don't hesitate to contact me."
+    new_unactivated:
+      body: |-
+        Hi,
+        
+        I noticed that you started to try out %{app_name}, but you haven't set up any projects yet.
+
+        You can setup a new project by visiting
+        %{new_project_url}
+        
+        If you have any questions or need any help getting your %{app_name} account set up, feel free to respond to this email.
+        
+        Thanks,
+        
+        The %{app_name} Team
+

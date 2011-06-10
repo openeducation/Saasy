@@ -1,0 +1,34 @@
+<% content_for :header do -%>
+  <h2>Account Settings</h2>
+<% end -%>
+
+<%= render :partial => 'subnav' %>
+
+<div class="plan current">
+  <h3>Your Plan</h3>
+  <%= render @account.plan %>
+  <%= link_to "Upgrade", edit_account_plan_path(current_account), :id => "upgrade-account" %>
+
+  <% @account.plan.limits.numbered.each do |limit| -%>
+    <%= render_limit_meter(limit) %>
+  <% end -%>
+</div>
+
+<%= content_tag_for :div, @account do -%>
+  <%= semantic_form_for @account do |form| %>
+    <%= form.inputs do %>
+      <%= form.input :name, :label => "Account name" %>
+      <%= form.input :keyword %>
+    <% end %>
+
+    <%= form.buttons do %>
+      <%= form.commit_button "Update" %>
+      <li>
+        <%= link_to t(".delete", :default => "Delete my account"),
+                    @account,
+                    :method  => :delete,
+                    :confirm => "Are you sure? All data will be irreversibly deleted." %>
+      </li>
+    <% end %>
+  <% end %>
+<% end -%>

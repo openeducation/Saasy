@@ -1,0 +1,36 @@
+<% content_for :header do -%>
+  <h2>User Details</h2>
+<% end -%>
+
+<div id="user_accounts">
+  <h3>Accounts</h3>
+  <ul>
+    <% @user.accounts.each do |account| -%>
+      <li>
+        <%= link_to edit_account_path(account) do -%>
+          <h4><%= account.name %></h4>
+          <p class="edit-account">edit account</p>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ul>
+  <%= link_to 'Add new account', plans_path, :class => 'new-account' %>
+</div>
+
+
+<div id="login_info"><h3>Login Information</h3>
+  <%= semantic_form_for @user, :url => profile_path do |form| %>
+    <%= form.inputs do %>
+      <%= form.input :name %>
+      <%= form.input :email %>
+    <% end %>
+
+    <%= form.inputs do %>
+      <%= form.input :password, :label => "New password", :required => true %>
+    <% end %>
+
+    <%= form.buttons do %>
+      <%= form.commit_button "Update" %>
+    <% end %>
+  <% end %>
+</div>

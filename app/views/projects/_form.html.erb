@@ -1,0 +1,36 @@
+<%= form.inputs do %>
+  <% if current_user.memberships.admin.size > 1 -%>
+    <%= form.input :account, :collection => current_user.memberships.admin.collect(&:account) %>
+  <% else %>
+    <%= form.input :account, :as => :hidden, :value => current_account.id %>
+  <% end -%>
+  <%= form.input :name, :hint => project_url(form.object).html_safe %>
+  <%= form.input :keyword, :wrapper_html => { :style => 'display: none' } %>
+  <% if form.object.persisted? -%>
+    <%= form.input :archived, :hint => t('project.archived.hint', :default => "Archived project don't count against your project total. You cannot create or edit stories or discussions.") %>
+  <% end -%>
+  <%= form.input :users, :label        => "Admins",
+                         :as           => :check_boxes,
+                         :collection   => form.object.account.admins,
+                         :wrapper_html => { :id => "project_admins_input" },
+                         :input_html   => { :disabled => true } %>
+  <% if form.object.account.non_admins.any? -%>
+    <%= form.input :users, :as => :check_boxes, :collection => form.object.account.non_admins %>
+  <% end -%>
+<% end %>
+
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(function() {
+      $('#project_account_id').change(function() {
+        if($('#project_account_id').val() != "") {
+          console.log(window.location);
+          window.location.href = window.location.pathname + '?project[account_id]=' + $('#project_account_id').val();
+          return false;
+        }
+      });
+    });
+  <% end %>
+<% end -%>
+
+<%= render :partial => "shared/saucy_javascript" %>

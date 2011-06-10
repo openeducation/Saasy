@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+  <h2>Users for <span><%= current_account.name %></span></h2>
+<% end -%>
+
+<%= render :partial => 'accounts/subnav' %>
+
+<ul class="users">
+  <% @memberships.each do |membership| -%>
+    <%= content_tag_for :li, membership.user do -%>
+      <%= link_to [:edit, membership] do %>
+        <%= membership.name %> <span>(<%= membership.email %>)</span>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+</ul>
+
+<%= link_to 'Invite user', new_account_invitation_path(current_account), :class => "button"%>
