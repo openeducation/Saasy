@@ -7,7 +7,6 @@ class BillingsController < ApplicationController
 
   def edit
     @account = current_account
-
     @account.cardholder_name = @account.credit_card.cardholder_name
     @account.billing_email = @account.customer.email
     @account.expiration_month = @account.credit_card.expiration_month
