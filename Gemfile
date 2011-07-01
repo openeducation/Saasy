@@ -3,7 +3,7 @@ gem "cucumber"
 gem "aruba"
 gem "rake"
 gem "rspec-rails", :require => false
-gem "rails", ">= 3.0.3"
+gem "rails", ">= 3.1.0.rc4"
 gem "thin"
 gem "clearance", "~> 0.11.0"
 gem "shoulda", :require => false
