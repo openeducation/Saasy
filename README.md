@@ -4,7 +4,7 @@ Please note: This project was started by [ThoughtBot](https://github.com/Thought
 
 Sassy is a Rails engine for monthly subscription-style SaaS apps.
 
-Example scenarios covered by Saucy:
+Example scenarios covered by Saasy:
 
 * I sign up for "Free" plan under new account "thoughtbot"
 * I am an admin and can be reached at "dan@example.com"
