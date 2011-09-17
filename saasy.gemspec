@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
  s.add_dependency('braintree', '>= 2.6.2')
  s.add_dependency('clearance', '~> 0.11.0')
  s.add_dependency('formtastic', '>= 1.2')
- s.add_dependency('railties', '3.0.3')
+ s.add_dependency('railties', '~> 3.0.3')
  s.add_dependency('sham_rack', '1.3.3')
  s.add_dependency('sinatra', '>= 1.1.2')
 
