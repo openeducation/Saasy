@@ -1,6 +1,11 @@
 Saasy
 =====
+
 Please note: This project was started by [ThoughtBot](https://github.com/ThoughtBot). It was known by them as "Saucy". This project wasn't listed on their GitHub profile, thus I have taken it under wing. 
+
+
+Examples
+---------
 
 Sassy is a Rails engine for monthly subscription-style SaaS apps.
 
