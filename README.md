@@ -8,7 +8,7 @@ Example scenarios covered by Saasy:
 
 * I sign up for "Free" plan under new account "thoughtbot"
 * I am an admin and can be reached at "dan@example.com"
-* I create a project "Hoptoad"
+* I create a project "AirBrake"
 * I upgrade to the "Basic" plan and my credit card is charged
 * I now have permissions to add users and projects to the "thoughtbot" account
 * I invite "joe@example.com" to "Hoptoad"
